@@ -1,9 +1,9 @@
 // vite.config.js
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+/** @type {import('vite').UserConfig} */
+export default {
 	plugins: [vue()],
 	resolve: {
 		alias: {
@@ -13,15 +13,17 @@ export default defineConfig({
 	},
 	build: {
 		modulePreload: true,
-		rollupOptions: {
+		rolldownOptions: {
 			output: {
-				manualChunks: {
-					chunks: ['src/router/index.js'],
-					vue: ['vue'],
-					'vue-router': ['vue-router'],
-					json5: ['json5']
+				codeSplitting: {
+					groups: [
+						{ name: 'chunks', test: /src\/router\/index.js/ },
+						{ name: 'vue', test: /node_modules\/vue/ },
+						{ name: 'vue-router', test: /node_modules\/vue-router/ },
+						{ name: 'jsonc', test: /node_modules\/jsonc-parser/ }
+					]
 				}
 			}
 		}
 	}
-});
+};
