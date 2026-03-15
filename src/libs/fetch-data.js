@@ -1,4 +1,4 @@
-import json5 from 'json5';
+import * as jsonc from 'jsonc-parser';
 
 const urlBase =
 'https://cdn.jsdelivr.net/gh/LapisNet/.public_data/';
@@ -21,5 +21,5 @@ export const fetchData = async(name) => {
 	if(name === 'news' || name === 'projects') console.warn(`[Deprecation Warning] Fetching "${name}" from fetchData is deprecated and will be removed in future versions. Please migrate to the new data source.`);
 	if(!dataNames[name]) throw new Error(`Data "${name}" is not defined in fetchData.`);
 	const res = await fetch(urlBase + dataNames[name]);
-	return name === 'news'? await res.text(): json5.parse(await res.text());
+	return name === 'news'? await res.text(): jsonc.parse(await res.text());
 }

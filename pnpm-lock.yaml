@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      jsonc-parser:
+        specifier: ^3.3.1
+        version: 3.3.1
       vue:
         specifier: ^3.5.30
         version: 3.5.30
@@ -18,9 +21,6 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
         version: 6.0.5(vite@8.0.0(esbuild@0.27.1)(sass-embedded@1.98.0)(sass@1.98.0)(yaml@2.8.2))(vue@3.5.30)
-      json5:
-        specifier: ^2.2.3
-        version: 2.2.3
       sass-embedded:
         specifier: ^1.98.0
         version: 1.98.0
@@ -575,6 +575,9 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  jsonc-parser@3.3.1:
+    resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
 
   lightningcss-android-arm64@1.32.0:
     resolution: {integrity: sha512-YK7/ClTt4kAK0vo6w3X+Pnm0D2cf2vPHbhOXdoNti1Ga0al1P4TBZhwjATvjNwLEBCnKvjJc2jQgHXH0NEwlAg==}
@@ -1383,6 +1386,8 @@ snapshots:
   jsesc@3.1.0: {}
 
   json5@2.2.3: {}
+
+  jsonc-parser@3.3.1: {}
 
   lightningcss-android-arm64@1.32.0:
     optional: true
