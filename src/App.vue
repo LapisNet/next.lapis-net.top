@@ -20,8 +20,12 @@ const onKeyDown = (e: KeyboardEvent) => {
 }
 
 onMounted(() => {
-	if(decodeURIComponent(router.currentRoute.value.query.secret?.toString() || '') === secretKeys)
+	if(decodeURIComponent(location.search.split('?')[1] || '') === 'secret=' + secretKeys) {
 		secretStatus.value = true;
+		router.push({
+			query: {}
+		});
+	}
 	else window.addEventListener('keydown', onKeyDown);
 	outlinkHook.init(router);
 });
