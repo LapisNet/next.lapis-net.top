@@ -5,7 +5,7 @@ const trustedHosts = [
 ];
 
 const listener = (e: MouseEvent, router: import('vue-router').Router) => {
-	if(e.button !== 0) return;
+	if(e.button !== 0 || router.currentRoute.value.name === 'redirect') return;
 	const target = (e.target as HTMLElement).closest('a');
 	if(!target || target.target !== '_blank') return;
 
