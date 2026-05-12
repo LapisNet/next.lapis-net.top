@@ -13,6 +13,8 @@
     "lucide-preact", // or
     "lucide-react-native", // or
     "@lucide/vue",
+
+    "src/components/ui/**/*.vue" // avoid vscode auto re-import ui components
   ],
   "files.associations": {
     "*.css": "tailwindcss"
