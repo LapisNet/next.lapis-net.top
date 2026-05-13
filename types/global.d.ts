@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 type DataName = 'news' | 'members' | 'projects' | 'projects_v2' | 'contacts' | 'links';
 type DataReturns = Promise<string> | Project<Array> | Promise<Member[]> | Promise<Project[]> | Promise<ProjectV2[]>;
 
