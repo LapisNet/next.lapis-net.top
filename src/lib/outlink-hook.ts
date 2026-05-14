@@ -1,7 +1,15 @@
 const trustedHosts = [
+	// github and npm
 	'github.com',
+	'www.npmjs.com',
+
+	// lapis net
 	'lapisnet.github.io',
-	'*.lapis-net.top'
+	'*.lapis-net.top',
+
+	// mcisee
+	'mcisee.top',
+	'*.mcisee.top',
 ];
 
 const listener = (e: MouseEvent, router: import('vue-router').Router) => {
