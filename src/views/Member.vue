@@ -45,7 +45,7 @@ onMounted(async () => {
 	<div v-if="members.length === 0" class="w-full h-full flex items-center justify-center">
 		<Loader2Icon class="animate-spin" /> 加载中...
 	</div>
-	<div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+	<div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
 		<template v-for="member in filteredMembers" :key="member.name">
 			<MemberCard v-if="typeof member._show === 'undefined' || member._show" :member="member" />
 		</template>
