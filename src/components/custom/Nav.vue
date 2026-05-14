@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onMounted, onUnmounted } from 'vue';
+import { reactive, ref, onMounted, onUnmounted } from 'vue';
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -16,7 +16,7 @@ import { SunIcon, MoonIcon } from 'lucide-vue-next';
 import { pages, secretPages } from '@/router';
 import { useDark } from '@vueuse/core';
 import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
+import fetchData from '@/lib/fetch-data';
 
 const isDark = useDark();
 
@@ -28,18 +28,21 @@ const timeState = reactive({
 });
 
 const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+const outPages = ref<LinkInfo[]>([]);
 
 defineProps<{
 	secret: boolean;
 }>();
 
-onMounted(() => {
+onMounted(async () => {
 	timeState.interval = setInterval(() => {
 		const date = new Date();
 		timeState.time = date.toLocaleTimeString().replace(/:\d{2}$/, '');
 		timeState.fullTime = date.toLocaleTimeString();
 		timeState.date = date.toLocaleString().split(' ')[0] + ' ' + weekDays[date.getDay()];
 	}, 1000);
+
+	outPages.value = await fetchData('links');
 });
 
 onUnmounted(() => {
@@ -48,15 +51,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<NavigationMenu class="sticky left-0 top-0 p-4 max-w-full justify-between bg-background/20 backdrop-blur-lg">
+	<NavigationMenu class="sticky left-0 top-0 p-4 max-w-full justify-between bg-background/20 backdrop-blur-lg border-b border-border">
 		<NavigationMenuList class="font-heading">
 			<NavigationMenuItem>
 				<NavigationMenuTrigger>
 					LapisNet
 				</NavigationMenuTrigger>
 				<NavigationMenuContent class="md:static">
-					<ul class="flex flex-col gap-2 w-20 items-center hover:*:bg-background/20">
-						<NavItems :class="navigationMenuTriggerStyle()" :pages="pages" />
+					<ul class="flex flex-col gap-2 w-fit items-center hover:*:bg-background/20">
+						<NavItems :pages="pages" :outPages="outPages" />
 					</ul>
 				</NavigationMenuContent>
 			</NavigationMenuItem>
@@ -67,7 +70,7 @@ onUnmounted(() => {
 				</NavigationMenuTrigger>
 				<NavigationMenuContent class="md:static">
 					<ul class="flex flex-col gap-2 w-20 items-center hover:*:bg-background/20">
-						<NavItems :class="navigationMenuTriggerStyle()" :pages="secretPages" />
+						<NavItems :pages="secretPages" />
 					</ul>
 				</NavigationMenuContent>
 			</NavigationMenuItem>

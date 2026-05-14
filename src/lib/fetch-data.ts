@@ -12,7 +12,7 @@ const dataMap: Record<DataName, string> = {
 }
 
 type DataName = 'news' | 'members' | 'projects' | 'projects_v2' | 'contacts' | 'links';
-type DataReturns = string | MemberInfo[] | ProjectInfo[] | ProjectInfoV2[];
+type DataReturns = string | MemberInfo[] | ProjectInfo[] | ProjectInfoV2[] | Record<string, ContactInfo> | LinkInfo[];
 
 export default async <T extends DataReturns>(name: DataName): Promise<T> => {
 	if(name === 'news' || name === 'projects') console.warn(`[Deprecation Warning] Fetching "${name}" from fetchData is deprecated and will be removed in future versions. Please migrate to the new data source.`);

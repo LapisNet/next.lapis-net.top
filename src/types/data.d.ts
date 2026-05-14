@@ -95,3 +95,15 @@ type MemberInfo = {
 	/** 个人主页 */
 	url?: string;
 };
+
+type ContactInfo = {
+	icon: string;
+	id?: string;
+	url: string;
+	title?: string;
+}
+
+type LinkInfo = {
+	title: string;
+	link: string;
+}
